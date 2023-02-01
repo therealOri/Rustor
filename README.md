@@ -32,19 +32,23 @@ __ __
 <br />
 
 # How to use.
-Make sure you have Rust installed.
+#1 Make sure you have Rust installed.
 - [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
 > Follow instructions here.
 
 <br />
 
-- I use `rustc` for my compiling.
-> Example: `rustc Rustor.rs`
+#2 Compile the source code.
+- Example: `rustc Rustor.rs`
 
 <br />
 
-- Execute file.
-> `./Rustor`
+#3 Execute/run the code.
+- Command: `./Rustor`
+
+<br />
+
+- Rinse & repeat steps 2-3 each time you edit `Rustor.rs`
 __ __
 
 <br />
