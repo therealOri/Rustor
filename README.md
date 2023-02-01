@@ -24,3 +24,22 @@ Overall, chatGPT has gotten pretty bad lately and I don't think I may continue t
 
 # Bugs
 - Sometimes at the end of the file on the last word, One of the words if it isn't found in words.txt will be appended to the end of the last word over and over again untill you remove them and run the script again. I don't know why this happens or how it happens but If you keep running the script and it keeps saying "adding <word> to list" each time the script is ran, this is what I'm talking about. If you know Rust and can fix this or if you would love to contribute, feel free to tinker away!
+
+
+<br />
+<br />
+
+# How to use.
+Make sure you have Rust installed.
+- [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
+> Follow instructions here.
+
+<br />
+
+- I use `rustc` for my compiling.
+> Example: `rustc Rustor.rs`
+
+<br />
+
+- Execute file.
+> `./Rustor`
