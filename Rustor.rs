@@ -1,6 +1,8 @@
 use std::fs::OpenOptions;
 use std::io;
 use std::io::{Read, Seek, Write};
+use std::process::Command;
+
 
 fn words_sort() -> io::Result<()> {
     let mut contents = String::new();
@@ -36,19 +38,28 @@ fn words_sort() -> io::Result<()> {
 
 
 fn main() -> io::Result<()> {
-    // Add words here that you want to add to the list.
-    // It will let you know if the words already exist.
-    // If they don't, it will add the word(s) to the .txt file and keep everything alphabetical.
-    // Try to keep words lowercase.
-    let words = vec!["foo", "bar", "baz"];
-    if words.is_empty() || (words.len() == 1 && words[0].is_empty()) {
-        return Err(io::Error::new(io::ErrorKind::Other, "Words list is empty.."));
+    //No idea why this doesn't work..
+    Command::new("clear").output().expect("Failed to clear the terminal");
+    println!("Enter some words separated by commas: ");
+
+    let mut user_input = String::new();
+    io::stdin().read_line(&mut user_input)?;
+
+    if user_input.trim().is_empty() {
+        println!("user_input can't be an empty string.");
+        return Ok(());
     }
 
+    let words = user_input.trim().split(',');
+    let word_list: Vec<String> = words.clone()
+        .map(|words| words.trim().to_lowercase())
+        .filter(|words| !words.is_empty())
+        .collect();
+
+    //No idea why this doesn't work..
+    Command::new("clear").output().expect("Failed to clear the terminal");
+    println!("Checking words.txt for: {:?}", word_list);
     let mut contents = String::new();
-
-    println!("Checking words.txt for listed words...");
-
     let mut file = match OpenOptions::new().read(true).write(true).open("words.txt") {
         Ok(file) => file,
         Err(e) => {
@@ -69,7 +80,8 @@ fn main() -> io::Result<()> {
     let mut new_lines = Vec::new();
     let mut found_words = Vec::new();
 
-    for word in words {
+    for word in word_list {
+        let word = word.as_str();
         if word.is_empty() {
             continue;
         }
